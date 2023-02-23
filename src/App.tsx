@@ -8,6 +8,7 @@ import { Button, FlexBoxCol, FlexBoxRow } from "./components/styled/styled";
 import { useTonConnect } from "./hooks/useTonConnect";
 import { CHAIN } from "@tonconnect/protocol";
 import "@twa-dev/sdk";
+import Box from '@mui/material/Box';
 
 const StyledApp = styled.div`
   background-color: #e8e8e8;
@@ -34,6 +35,7 @@ function App() {
       <AppContainer>
         <FlexBoxCol>
           <h1>MONETON by BL</h1>
+          <Box>Test using Box.</Box>
           <FlexBoxRow>
             <TonConnectButton />
             <Button>
