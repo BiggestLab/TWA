@@ -33,6 +33,7 @@ function App() {
     <StyledApp>
       <AppContainer>
         <FlexBoxCol>
+          <h1>MONETON by BL</h1>
           <FlexBoxRow>
             <TonConnectButton />
             <Button>
