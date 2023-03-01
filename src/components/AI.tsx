@@ -23,11 +23,27 @@ interface t2i {
   width: number;
 }
 
-var hmmm: Record<string,any> = {}
-
 function mockApi(allValues: t2i) {
   console.log(allValues)
+  fetch('https://aa7c-2405-9800-b870-9066-d250-99ff-fed8-d996.ap.ngrok.io/sdapi/v1/txt2img', {
+    method: 'post',
+    body: JSON.stringify(allValues),
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    }
+  }).then(function(response) {
+    // set Toast style based on response.ok
+    console.log('response', response)
+    return response.json();
+  }).then(function(data) {
+    console.log('data', data)
+    const img = document.getElementById('a') as HTMLInputElement | null;
+    if (img !== null) img.src = "data:image/png;base64," + data.images[0];
+  });
 }
+
 
 type PropsRadio = {
   id: keyof t2i;
@@ -317,8 +333,10 @@ export function AI() {
               />
             </Box>
             <Box sx={{ width: { xs: '100%', md: '50%'} }}>
-              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: { xs: '10rem', md: '20rem' } }}>
-                <Box sx={{ width: '100%', maxWidth: '256px', p: '4rem 2rem', textAlign: 'center', background: 'rgba(255, 255, 255, .5)'  }}>~ img here ~</Box>
+              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <Box sx={{ position: 'relative', width: '100%', paddingTop: '100%', background: 'rgba(255, 255, 255, .5)' }}>
+                  <Box component="img" id="a" sx={{ position: 'absolute', top: '0', left: '0', width: '100%', height: '100%', objectFit: 'contain' }} src={"data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="} width="512" height="512" alt="" />
+                </Box>
               </Box>
             </Box>
           </Box>
