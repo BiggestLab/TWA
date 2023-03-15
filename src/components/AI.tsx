@@ -25,7 +25,7 @@ interface t2i {
 
 function mockApi(allValues: t2i) {
   console.log(allValues)
-  fetch('https://aa7c-2405-9800-b870-9066-d250-99ff-fed8-d996.ap.ngrok.io/sdapi/v1/txt2img', {
+  fetch('https://biggestlab.ddns.net/sdapi/v1/txt2img', {
     method: 'post',
     body: JSON.stringify(allValues),
     headers: {
