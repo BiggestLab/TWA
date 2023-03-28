@@ -159,7 +159,7 @@ const MUISlider = ({id, display, min, max, step, allValues, setAllValues}: Props
   return (
     <Box>
       <label htmlFor={id}>{display}</label>
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 3, width: '100%' }}>
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 1.5, md: 3 }, width: '100%' }}>
         <Slider
           aria-label={display}
           getAriaLabel={() => display}
@@ -284,42 +284,46 @@ export function AI() {
             allValues={allValues}
             setAllValues={setAllValues}
           />
-          <MUISlider
-            id="width"
-            display="Width"
-            min={64}
-            max={512}
-            step={64}
-            allValues={allValues}
-            setAllValues={setAllValues}
-          />
-          <MUISlider
-            id="height"
-            display="Height"
-            min={64}
-            max={512}
-            step={64}
-            allValues={allValues}
-            setAllValues={setAllValues}
-          />
-          <MUISlider
-            id="batch_count"
-            display="Batch count"
-            min={1}
-            max={100}
-            step={1}
-            allValues={allValues}
-            setAllValues={setAllValues}
-          />
-          <MUISlider
-            id="cfg_scale"
-            display="CFG scale"
-            min={1}
-            max={30}
-            step={.5}
-            allValues={allValues}
-            setAllValues={setAllValues}
-          />
+          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: 'repeat(2, minmax(0, 1fr))', md: 'repeat(2, minmax(0, 1fr))' }, gap: { xs: 2, md: 4 } }}>
+            <MUISlider
+              id="width"
+              display="Width"
+              min={64}
+              max={512}
+              step={64}
+              allValues={allValues}
+              setAllValues={setAllValues}
+            />
+            <MUISlider
+              id="height"
+              display="Height"
+              min={64}
+              max={512}
+              step={64}
+              allValues={allValues}
+              setAllValues={setAllValues}
+            />
+          </Box>
+          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: 'repeat(2, minmax(0, 1fr))', md: 'repeat(2, minmax(0, 1fr))' }, gap: 4 }}>
+            <MUISlider
+              id="batch_count"
+              display="Batch count"
+              min={1}
+              max={100}
+              step={1}
+              allValues={allValues}
+              setAllValues={setAllValues}
+            />
+            <MUISlider
+              id="cfg_scale"
+              display="CFG scale"
+              min={1}
+              max={30}
+              step={.5}
+              allValues={allValues}
+              setAllValues={setAllValues}
+            />
+          </Box>
           <MUINumber
             id="seed"
             display="Seed"

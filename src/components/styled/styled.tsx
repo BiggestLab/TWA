@@ -3,11 +3,6 @@ import styled from "styled-components";
 export const Card = styled.div`
   padding: 18px 20px;
   border-radius: 8px;
-  background-color: white;
-
-  @media (prefers-color-scheme: dark) {
-    background-color: #111;
-  }
 `;
 
 export const FlexBoxRow = styled.div`
@@ -47,7 +42,4 @@ export const Input = styled("input")`
   width: 100%;
   border: 1px solid #c2c2c2;
 
-  @media (prefers-color-scheme: dark) {
-    border: 1px solid #fefefe;
-  }
 `;
