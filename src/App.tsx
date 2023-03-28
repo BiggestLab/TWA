@@ -25,19 +25,21 @@ function App() {
     <>
       <ThemeProvider theme={darkTheme}>
         <CssBaseline />
-        <h1>MONETON by BL</h1>
-        <Box>Test v 1.</Box>
-        <FlexBoxRow>
-          <TonConnectButton />
-          <Button>
-            {network
-              ? network === CHAIN.MAINNET
-                ? "mainnet"
-                : "testnet"
-              : "N/A"}
-          </Button>
-        </FlexBoxRow>
-        <AI />
+        <Box sx={{ p: { xs: 2, md: 4, lg: 8 } }}>
+          <h1>AI Project by BL</h1>
+          <Box>Test v2</Box>
+          <FlexBoxRow>
+            <TonConnectButton />
+            <Button>
+              {network
+                ? network === CHAIN.MAINNET
+                  ? "mainnet"
+                  : "testnet"
+                : "N/A"}
+            </Button>
+          </FlexBoxRow>
+          <AI />
+        </Box>
         <Counter />
         <TransferTon />
         <Jetton />

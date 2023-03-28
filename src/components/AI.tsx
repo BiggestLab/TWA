@@ -304,7 +304,7 @@ export function AI() {
               setAllValues={setAllValues}
             />
           </Box>
-          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: 'repeat(2, minmax(0, 1fr))', md: 'repeat(2, minmax(0, 1fr))' }, gap: 4 }}>
+          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: 'repeat(2, minmax(0, 1fr))', md: 'repeat(2, minmax(0, 1fr))' }, gap: { xs: 2, md: 4 } }}>
             <MUISlider
               id="batch_count"
               display="Batch count"
