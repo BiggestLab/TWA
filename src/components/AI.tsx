@@ -1,8 +1,4 @@
 import React, { useState } from "react";
-import {
-  Card,
-  FlexBoxCol
-} from "./styled/styled";
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -22,28 +18,6 @@ interface t2i {
   steps: number;
   width: number;
 }
-
-function mockApi(allValues: t2i) {
-  console.log(allValues)
-  fetch('https://biggestlab.ddns.net/sdapi/v1/txt2img', {
-    method: 'post',
-    body: JSON.stringify(allValues),
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      Accept: 'application/json',
-      'Content-Type': 'application/json'
-    }
-  }).then(function(response) {
-    // set Toast style based on response.ok
-    console.log('response', response)
-    return response.json();
-  }).then(function(data) {
-    console.log('data', data)
-    const img = document.getElementById('a') as HTMLInputElement | null;
-    if (img !== null) img.src = "data:image/png;base64," + data.images[0];
-  });
-}
-
 
 type PropsRadio = {
   id: keyof t2i;
@@ -215,6 +189,7 @@ const MUITextField = ({id, display, allValues, setAllValues}: Props /*allValues:
 
 
 export function AI() {
+  const [imagining, setImaging] = useState(false);
   const [allValues, setAllValues] = useState<t2i>({
     batch_count: 1,
     cfg_scale: 7,
@@ -226,6 +201,29 @@ export function AI() {
     steps: 20,
     width: 256,
   });
+
+  function biggestApi(allValues: t2i) {
+    console.log(allValues)
+    setImaging(true)
+    fetch('https://biggestlab.ddns.net/sdapi/v1/txt2img', {
+      method: 'post',
+      body: JSON.stringify(allValues),
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }).then(function(response) {
+      // set Toast style based on response.ok
+      console.log('response', response)
+      return response.json();
+    }).then(function(data) {
+      setImaging(false)
+      console.log('data', data)
+      const img = document.getElementById('a') as HTMLInputElement | null;
+      if (img !== null) img.src = "data:image/png;base64," + data.images[0];
+    });
+  }
 
   return (
     <>
@@ -252,8 +250,9 @@ export function AI() {
             fullWidth
             size={'large'}
             sx={{ height: { xs: '3.5rem', md: '100%' }, fontSize: { xs: '1.125rem', md: '1.25rem' } }}
-            onClick={() => mockApi(allValues)}
+            onClick={() => biggestApi(allValues)}
             variant="contained"
+            disabled={imagining}
           >
             Imagine
           </Button>
